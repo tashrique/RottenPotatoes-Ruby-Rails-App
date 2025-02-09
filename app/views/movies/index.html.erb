@@ -1,0 +1,26 @@
+<h1>Movies</h1>
+
+<table>
+        <tr>
+            <th>Title</th>
+            <th>Rating</th>
+            <th>Release Date</th>
+            <th>Actions</th>
+        </tr>
+
+        <% @movies.each do |movie| %>
+        <tr>
+            <td><%= link_to movie.title, movie_path(movie) %></td>
+            <td><%= movie.rating%></td>
+            <td><%= movie.release_date%></td>
+            <td>
+            <%= link_to 'Edit', edit_movie_path(movie) %>
+            <%= link_to 'Delete', movie_path(movie), 
+                data: { turbo_method: :delete, turbo_confirm: 'Are you sure?' } %>
+            </td>
+        </tr>
+    <% end %>  
+</table>
+
+
+<%= link_to "Add New Movie", new_movie_path %>   
